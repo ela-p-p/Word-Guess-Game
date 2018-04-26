@@ -1,0 +1,24 @@
+* {
+    box-sizing: border-box;
+}
+body{
+    background: lightgrey;
+}
+.cardheader{
+    background: lavender;
+    height: 10em;
+    border:solid 0.2em black;
+}
+.card{
+    height:2em;
+}
+.card1 {
+    height: 40em;
+    background: lightcyan;
+    border: solid 0.4em black
+}
+.card2 {
+    height: 40em;
+    background: lightcyan;
+    border: solid 0.4em black;
+}
