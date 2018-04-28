@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
     <link rel="stylesheet" href="assets/css/style.css">
-    <!-- <link rel="stylesheet" scr="assets/javascript/game.js"> -->
+    <!-- <link rel="stylesheet" href="assets/javascript/game.js"> -->
     <title>Word Guess Game</title>
 </head>
 <body>
@@ -31,41 +31,40 @@
             <div class = "col-md-2"> </div>
 
             <div class="card2 col-lg-4">
-            <h5><strong>Correct</strong><div id="correct">______</div></h5> <br><br><br>
+            <h5><strong>Correct</strong><div id="correct"></div></h5> <br><br><br>
             <h5><strong>Wrong</strong><div id="incorrect"></div></h5>
         </div> 
     </div>
     </div>
-
     <script type="text/javascript">
     var correctSelect = document.getElementById("correct");
     var incorrectSelect = document.getElementById("incorrect");
-// popular culture
-// wordsForGame = [""]
-
-// for (words=0; words < wordsForGame.length; words++);
-    // once word guessed or missed loop to next word to continue game
-
-// Wins = update
-// Losses = update
-
-    // var wordsForGame ='IZZY';
-
+    
+    var wordsForGame ='ELIZABETH';
+    
+    var guessWord = wordsForGame.replace(/[A-Z]/g, '_');
+    correctSelect.textContent = guessWord;
+    
     document.onkeyup = function(event) {
-        if("IZZY".indexOf(event) > -1) {
-            
-            correctSelect.textContent = event.key;
+        var pos = []
+        var index = wordsForGame.indexOf(event.key);
+        if (index == -1)  {
+            var text = ""
+            var letter = event.key.concat(text);
+            incorrectSelect.textContent = letter;
         }
-
-          //     correctSelect.textContent.wordsForGame.replace = event.key;
-        
-        if ("IZZY".indexOf(event) < 0) {
-            incorrectSelect.textContent = event.key;
+    
+        while (index > -1) {
+            pos.push(index);
+            index = wordsForGame.indexOf(event.key, index+1);     
         }
-        console.log(event);
-       
-    }
-
-</script>
+        console.log(pos.length)
+        for (var a = 0; a < pos.length; a++) {
+           var swapIndex = pos.pop(guessWord);
+           console.log(swapIndex)
+        }  
+        correctSelect.textContent = guessWord;    
+    }  
+</script> 
     </body>
 </html>
