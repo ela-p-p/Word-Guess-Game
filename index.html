@@ -7,16 +7,20 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
     <link rel="stylesheet" href="assets/css/style.css">
-    <!-- <link rel="stylesheet" href="assets/javascript/game.js"> -->
+    
     <title>Word Guess Game</title>
+
 </head>
+
 <body>
-        
+
 
     <div class="container">
 
         <div class ="row">
-            <div class="cardheader col-10"></div>
+            <div class="cardheader col-10">
+                    <h1><strong>60's Style</strong></h1>
+            </div>
         </div>
 
         <div class="row">
@@ -26,8 +30,12 @@
         <div class="row">   
            <div class = "col-md-1"> </div>
             <div class="card1 col-lg-4">
-                <h1><strong><div id = "winner"></div></strong></h1>
-                <h3><div id = "loser"></div></h3>
+                    <img class="card-img-top1" id = "loser" src= "assets/images/loser.jpg" alt="loser"  width="170" height="200">
+                    <img class="card-img" id = "winner" src= "assets/images/winner.jpg" alt="winner"  width="170" height="200">
+                    <div class="card-body">
+
+                
+             <button type="button" class="btn btn-warning" id = "button">Play Again</button></div>
             </div>
             
               
@@ -44,69 +52,9 @@
         </div> 
     </div>
     </div>
-    <script type="text/javascript">
-    var correctSelect = document.getElementById("correct");
-    var incorrectSelect = document.getElementById("incorrect");
-    var incorrectGuesses = document.getElementById("guesses");
-    var winner = document.getElementById("wins");
-    var loser = document.getElementById("losses");
-    
-    var wordsForGame = 'elizabeth' 
-    // ['peace', 'psychedelic', 'woodstock', 'hippy', 'free love', 'bob marley', 'the doors']
-    
-    var guessWord = wordsForGame.replace(/[A-Z,a-z]/g, '_');
-    var text = "'";
-    var wrongLetters = 0;
-    correctSelect.textContent = guessWord;
-    document.onkeyup = function(event) {
-        var pos = [];       
-        var index = wordsForGame.indexOf(event.key);
-        if (index == -1) { 
-            wrongLetters +=1;
-            if (wrongLetters >= 10) {
-                stats()
-            }
-            text = text + event.key;
-            incorrectSelect.textContent = text.toLocaleUpperCase()  + "'".toUpperCase();
-            incorrectGuesses.textContent = wrongLetters;
-        } else {
-            while(index > -1) {
-                pos.push(index);
-                index = wordsForGame.indexOf(event.key, index+1);
-            }
-            var swapWord = guessWord
-            for (var a = 0; a < pos.length; a++) {
-                swapWord = swapWord.substring(0, pos[a]) + event.key + swapWord.substr(pos[a]+1); 
-            }
-            correctSelect.textContent = swapWord.toUpperCase();
-            guessWord = swapWord.toUpperCase();
-        }
-        if (guessWord.toLowerCase() == wordsForGame.toLowerCase()) {
-            won()
-        }
-    }
 
-// counter
-    var winning = 0;
-    var losing = 0;
+    <script type="text/javascript" src="assets/javascript/game.js"></script>
 
-    function lost(){
-        //game over after 10 guesses,unhide WORD, unhide Loser saying and image
-        correctSelect.textContent = wordsForGame
-        var lossImage = document.getElementById("losses");
-        losing +=1;
-        loser.textContent = losing;
-         //reset game
-    }
-
-    function won(){
-        winning +=1;
-        winner.textContent = winning;
-        //unhide Winner image and saying
-        var winImage = document.getElementById("wins");
-    }
-
-</script> 
     </body>
 
 </html>
